@@ -8,19 +8,33 @@
         <!--Site da CoinMarketCap: https://pro.coinmarketcap.com/ -->
         <!--Extenção no Chrome:https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc?hl=pt-BR -->
 
+
+        <!-- BootstrapCDN https://www.bootstrapcdn.com/ -->
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
        
 
         <title >CoinMarketCap</title>
         
     </head>
     <body>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">Coin Market Cap</li>
+            </ol>
+          </nav>
+
+        <div class="d-flex p-3 bd-highlight">
+            <div id='coins'></div>
+        </div>
         
 
         <script type="text/javascript">
 
 
         var chaveAPI = {
-            key: '6c4c01ab-2051-4c4a-a0ef-a8d78a2323cc'
+            key: 'CHAVE DA API'
 
         }
 
@@ -33,15 +47,40 @@
             if(!response.ok) throw new Error ('Erro ao executar a requisição, status ' + response.status);
             return response.json();
 
-            })//Adicionando tratamento dos dados
-
-            .then((api) => {
-                console.log(api);
-
-
-
             })
 
+            //Adicionando tratamento dos dados
+
+            .then((api) => {
+
+                var texto = "";
+
+                //Get 10 coins e símbolos
+            
+                for (let i = 0; i < 10; i++){
+                    //Mostrar API Information
+
+
+                  texto = texto + `
+                  
+                  <div class="media">
+                      <img src="coin.jpg" class="align-self-center mr-3" alt="coin" width="100" height="60">
+                      <div class="media-body">
+                      <h5 class="mt-2">${api.data[i].name}</h5>
+                      <p>${api.data[i].symbol}</p>
+                      </div>
+                  </div>
+             
+                  `;
+
+
+                    document.getElementById("coins").innerHTML = texto;
+
+                    //Execício de desafio: acrescentar a funcionalidade: "first_historical_data:""
+
+
+                }
+            })
 
 
 
@@ -53,18 +92,5 @@
             
             
         </script>
-
-
-
-
-       
-
-
     </body>
-    
-
-
-
-
-
 </html>
