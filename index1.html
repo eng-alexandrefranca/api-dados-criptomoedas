@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+
+    <head>
+        <meta Charset="utf-8">
+  
+
+        <!--Site da CoinMarketCap: https://pro.coinmarketcap.com/ -->
+
+        <!--Extenção no Chrome:https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc?hl=pt-BR -->
+        
+
+        <title >CoinMarketCap</title>
+        
+    </head>
+    <body>
+        
+
+        <script type="text/javascript">
+
+
+        var chaveAPI = {
+            key: '6c4c01ab-2051-4c4a-a0ef-a8d78a2323cc'
+
+        }
+
+
+            //Requisição com GET Fetch com tratamento de Erros
+
+
+        fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/map?CMC_PRO_API_KEY='+chaveAPI.key)
+            .then((response) => {
+            if(!response.ok) throw new Error ('Erro ao executar a requisição, status ' + response.status);
+            return response.json();
+
+            })
+            .then((api) => {
+                console.log(api);
+            })
+
+
+            .catch((error) => {
+                console.error(error.mensage);
+
+            });
+           
+            
+        </script>
+       
+
+
+    </body>
+    
+
+
+</html>
